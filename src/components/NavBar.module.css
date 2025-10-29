@@ -1,0 +1,130 @@
+/* src/components/NavBar.module.css */
+
+.MainConatinerOfNav {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+  
+  display: flex;
+  /* This change is important */
+  justify-content: space-between; 
+  align-items: center;
+  /* Add relative position for the mobile menu */
+  position: relative; 
+}
+
+/* --- Logo Style --- */
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  text-decoration: none;
+}
+
+/* --- Desktop Links Container --- */
+.linksContainer {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #444;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.navLink:hover {
+  background-color: #f4f4f4;
+  color: #000;
+}
+
+.navLink.active {
+  background-color: #3498db;
+  color: #ffffff;
+}
+
+/* --- Hamburger Button --- */
+.hamburgerButton {
+  display: none; /* Hide on desktop */
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10; /* Make sure it's on top */
+}
+
+.hamburgerButton span {
+  width: 2rem;
+  height: 0.25rem;
+  background-color: #333;
+  border-radius: 10px;
+  transition: all 0.3s linear;
+}
+
+/* --- Media Query for Mobile --- */
+/* This code runs only on screens 768px or smaller */
+@media (max-width: 768px) {
+  .hamburgerButton {
+    display: flex; /* Show on mobile */
+  }
+
+  .linksContainer {
+    /* This creates the mobile dropdown menu */
+    position: absolute;
+    top: 100%; /* Position it right below the navbar */
+    left: 0;
+    right: 0;
+    
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+    border-radius: 0 0 12px 12px;
+    
+    flex-direction: column;
+    align-items: center;
+    gap: 0; /* Remove gap for full-width links */
+    padding: 1rem 0;
+
+    /* Hide it by default */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .linksContainer.open {
+    /* Show it when the 'open' class is added */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .navLink {
+    /* Make links take full width */
+    width: 90%;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .navLink.active {
+    background-color: #3498db;
+    color: #ffffff;
+  }
+
+  .navLink:hover {
+    background-color: #f4f4f4;
+    color: #000;
+  }
+}
